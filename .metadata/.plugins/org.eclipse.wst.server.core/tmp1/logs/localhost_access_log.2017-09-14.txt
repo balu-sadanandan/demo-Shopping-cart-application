@@ -1,0 +1,8 @@
+127.0.0.1 - - [14/Sep/2017:12:30:36 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [14/Sep/2017:12:30:37 +0530] "GET /shopping-cart/ HTTP/1.1" 404 1022
+127.0.0.1 - - [14/Sep/2017:12:30:46 +0530] "GET /shopping-cart/WEB-INF/index.html HTTP/1.1" 404 992
+127.0.0.1 - - [14/Sep/2017:12:30:57 +0530] "GET /shopping-cart/WEB-INF/index.html HTTP/1.1" 404 992
+127.0.0.1 - - [14/Sep/2017:12:32:29 +0530] "GET /shopping-cart/ HTTP/1.1" 404 1022
+127.0.0.1 - - [14/Sep/2017:12:32:37 +0530] "GET /shopping-cart/WEB-INF/index.html HTTP/1.1" 404 992
+127.0.0.1 - - [14/Sep/2017:12:36:36 +0530] "GET /shopping-cart/WEB-INF/index.html HTTP/1.1" 404 992
+127.0.0.1 - - [14/Sep/2017:12:36:47 +0530] "GET /shopping-cart/WEB-INF/index.html HTTP/1.1" 404 992

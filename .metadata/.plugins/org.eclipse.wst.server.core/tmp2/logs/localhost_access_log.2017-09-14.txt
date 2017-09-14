@@ -1,0 +1,7 @@
+127.0.0.1 - - [14/Sep/2017:12:47:48 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [14/Sep/2017:12:47:49 +0530] "GET /shopping-cart/WEB-INF/index.html HTTP/1.1" 404 992
+127.0.0.1 - - [14/Sep/2017:12:53:14 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [14/Sep/2017:12:53:15 +0530] "GET /shopping-cart/ HTTP/1.1" 200 557
+127.0.0.1 - - [14/Sep/2017:12:53:15 +0530] "GET /shopping-cart/clouds.jpg HTTP/1.1" 404 1042
+127.0.0.1 - - [14/Sep/2017:12:59:14 +0530] "GET /shopping-cart/ HTTP/1.1" 304 -
+127.0.0.1 - - [14/Sep/2017:12:59:14 +0530] "GET /shopping-cart/clouds.jpg HTTP/1.1" 404 1042
