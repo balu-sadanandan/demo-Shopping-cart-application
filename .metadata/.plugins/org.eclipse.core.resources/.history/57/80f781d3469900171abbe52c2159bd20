@@ -1,0 +1,48 @@
+package cart;
+import java.sql.*;
+import java.util.*;
+public class CartDao {
+	private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+    public CartDao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+        this.jdbcURL =jdbcURL ;
+        this.jdbcUsername = jdbcUsername;
+        this.jdbcPassword = jdbcPassword;
+    }
+
+    protected void connect() throws SQLException {
+        if (conn == null ||conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(
+                                        jdbcURL, jdbcUsername, jdbcPassword);
+            if (conn != null) {
+		        System.out.println("Connected");
+		    }
+        }
+    }
+     
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+
+}
+    public static void main(String[] args) {
+    	CartDao t1= new CartDao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+		
+    	
+    	
+    	
+    	
+    	
+	}
+    
+}
+
+

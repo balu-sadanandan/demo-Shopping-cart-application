@@ -5,3 +5,6 @@
 127.0.0.1 - - [14/Sep/2017:12:53:15 +0530] "GET /shopping-cart/clouds.jpg HTTP/1.1" 404 1042
 127.0.0.1 - - [14/Sep/2017:12:59:14 +0530] "GET /shopping-cart/ HTTP/1.1" 304 -
 127.0.0.1 - - [14/Sep/2017:12:59:14 +0530] "GET /shopping-cart/clouds.jpg HTTP/1.1" 404 1042
+127.0.0.1 - - [14/Sep/2017:16:14:55 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [14/Sep/2017:16:14:57 +0530] "GET /shopping-cart/ HTTP/1.1" 200 265
+127.0.0.1 - - [14/Sep/2017:16:15:23 +0530] "GET /shopping-cart/ HTTP/1.1" 200 269

@@ -1,0 +1,8 @@
+package cart;
+
+public class Dbtest {
+public static void main(String[] args) {
+	Cartdao t1= new Cartdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+	t1.run();
+}
+}

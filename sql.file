@@ -1,0 +1,5 @@
+select shopcart;
+select * from userlist;
+INSERT into userlist (username,password) VALUES ("balu","1234");
+DELETE from userlist where userid >1;
+ALTER TABLE userlist AUTO_INCREMENT = 2;
