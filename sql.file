@@ -1,5 +1,8 @@
 select shopcart;
 select * from userlist;
-INSERT into userlist (username,password) VALUES ("balu","1234");
-DELETE from userlist where userid >1;
+INSERT into userlist (username,password,emailid) VALUES ("balu","1234","b@a.com");
+DELETE from userlist where userid <4;
 ALTER TABLE userlist AUTO_INCREMENT = 2;
+INSERT into userlist (username,password,emailid) VALUES ("balu","1234","b@a.com");
+INSERT into prodcat (prodid,name,price) VALUES ("02","monitor","10574");
+select * from prodcat;

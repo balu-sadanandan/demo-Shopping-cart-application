@@ -17,7 +17,8 @@ import java.util.*;
 @WebServlet("//*")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    protected Cartdao udao;   
+    protected Cartdao udao;  
+    protected Pdao pdao;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,6 +29,8 @@ public class Controller extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		 udao= new Cartdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+		 pdao= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+		 
 		 System.out.println("init");
 		 
 	}
@@ -54,9 +57,50 @@ public class Controller extends HttpServlet {
 		if(action.equals("/login")){
 			validate(request,response);
 		}
+		if(action.equals("/register")){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("usrform.jsp");
+	        dispatcher.forward(request, response);
+	        return;
 			
-		
-		if((session.getAttribute("login").equals("admin")))
+		}
+		if(action.equals("/ninsert"))
+				{
+			try {
+				insertuUser(request, response);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login3.jsp");
+    	        dispatcher.forward(request, response);
+    	        return;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("couldnt write new userdata");
+			}
+				}
+			
+		if((session.getAttribute("login").equals("user")))
+		{// the switch case should be here
+			System.out.println("inside user page");
+			try{
+			switch(action){
+			case "/logout":
+            	session.invalidate();
+            	session=request.getSession();
+    	    	session.setAttribute("login", "invalid");
+              	RequestDispatcher dispatcher = request.getRequestDispatcher("login1.jsp");
+    	        dispatcher.forward(request, response);
+            	break;
+			default:listProducts(request, response);
+			}
+			
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				System.out.println("somthing went wrong!--user");
+			}
+		}	
+				
+		else if((session.getAttribute("login").equals("admin")))
 		{// the switch case should be here
 			System.out.println("inside admin page");
 			try{
@@ -94,7 +138,7 @@ public class Controller extends HttpServlet {
 			catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
-//				System.out.println("somthing went wrong!");
+				System.out.println("somthing went wrong!");
 			}
 			
 			
@@ -207,6 +251,17 @@ public class Controller extends HttpServlet {
 	        response.sendRedirect("list");
 	        return;
 	    }
+	 private void insertuUser(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, IOException, ServletException {
+		         
+	        String name = request.getParameter("name");
+	        String pwd = request.getParameter("pwd");
+	        String mid = request.getParameter("mid");
+	        User u= new User(name, pwd, mid);
+	        udao.addUser(u);	            
+	       // response.sendRedirect("list");
+	        return;
+	    }
 	
 	 private void updateUser(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
@@ -231,6 +286,15 @@ public class Controller extends HttpServlet {
 	        response.sendRedirect("list");
 	        return;
 	 } 
-	 
+	 private void listProducts(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 List<Prod> pList = pdao.listAll();
+		 System.out.println("got sql data for products");
+	        request.setAttribute("pList",pList);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("prodcat.jsp");
+	        dispatcher.forward(request, response);
+	        return;
+	     
+	        
+	}
 
 }

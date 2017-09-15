@@ -35,6 +35,10 @@
                     </tr>
                 </tbody>
             </table>
+                <td>
+            new user?,&nbsp; 
+            <a href="register">Register now</a>
+            </td>
             </center>
         </form>
     </body>

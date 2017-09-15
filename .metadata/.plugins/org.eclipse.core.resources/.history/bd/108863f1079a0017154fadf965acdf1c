@@ -1,0 +1,18 @@
+package cart;
+
+import java.sql.SQLException;
+
+public class Dbtest {
+public static void main(String[] args)  {
+	Pdao t1= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+	try {
+//		Prod p= new Prod(3,"cpu",5000,"xxx");
+//		t1.addItem(p);
+		Prod p= new Prod(3);
+//		t1.addItem(p);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+}

@@ -6,8 +6,10 @@
         <title>Login</title>
     </head>
     <body>
+    	 
         <form method="post" action="login">
             <center>
+           
             <table border="1" width="30%" cellpadding="3">
                 <thead>
                     <tr>
@@ -30,7 +32,12 @@
                     
                 </tbody>
             </table>
+            <td>
+            new user?,&nbsp; 
+            <a href="register">Register now</a>
+            </td>
             </center>
         </form>
+        
     </body>
 </html>
