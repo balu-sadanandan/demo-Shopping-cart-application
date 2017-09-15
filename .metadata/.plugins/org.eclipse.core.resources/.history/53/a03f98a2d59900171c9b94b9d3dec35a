@@ -1,0 +1,60 @@
+package cart;
+import java.sql.*;
+import java.util.*;
+public class Cartdao {
+	private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+    public Cartdao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+        this.jdbcURL =jdbcURL ;
+        this.jdbcUsername = jdbcUsername;
+        this.jdbcPassword = jdbcPassword;
+    }
+
+    protected void connect() throws SQLException {
+        if (conn == null ||conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(
+                                        jdbcURL, jdbcUsername, jdbcPassword);
+            if (conn != null) {
+		        System.out.println("Connected");
+		    }
+        }
+    }
+     
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+
+}
+    public  void run() throws SQLException {
+    	
+    	String sql = "INSERT INTO userlist (username,password,emailid)  VALUES (?, ?, ?)";
+    	connect();
+		 
+		PreparedStatement statement = conn.prepareStatement(sql);
+		//statement.setString(1, Integer.toString(e.getEmp_id()));
+		statement.setString(1,"someone");
+		statement.setString(2, "pwd");
+		statement.setString(3, "some1@x.com");
+		 
+		int rowsInserted = statement.executeUpdate();
+		
+		statement.close();
+		disconnect();
+    	
+    	
+    	
+    	
+    	
+	}
+    
+}
+
+
