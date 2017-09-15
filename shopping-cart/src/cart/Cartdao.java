@@ -143,16 +143,16 @@ public class Cartdao {
     	//System.out.println(u.getName());
     	//System.out.println(u.getMailid());
     	
-//    	List<User> u= listAll();
-//		Iterator itr =u.iterator();
-//		while(itr.hasNext())
-//		{
-//			User uit =(User) itr.next();
-//			System.out.println(uit.getName());
-//		}
+    	List<User> u= listAll();
+		Iterator itr =u.iterator();
+		while(itr.hasNext())
+		{
+			User uit =(User) itr.next();
+			System.out.println(uit.getName());
+		}
 //    	
-    	User u=new User(7,"name1","fght","mailid");
-    	updateUser(u);
+//    	User u=new User(7,"name1","fght","mailid");
+//    	updateUser(u);
     	
     	
 	}
