@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>random shopping site</title>
+    <title>Awesome shopping site</title>
 </head>
 <body>
     <center>
@@ -11,8 +11,12 @@
     </center>
     <div align="right">
     <a href="logout">Logout</a>
+    
 </div>
-      
+   <div align="left">
+    <a href="lcart">view my cart</a>
+    
+</div>   
     
    
     <div align="center">

@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Dbtest {
 public static void main(String[] args)  {
-	Pdao t1= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+	Ucdao t1= new Ucdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
 	try {
-		Prod p= new Prod(1,"cpu",5000,"xxx");
+		//Prod p= new Prod(1,"cpu",5000,"xxx");
 //		t1.addItem(p);
 //		Prod p= new Prod(1);
 //		t1.deleteItem(p);
@@ -20,8 +20,16 @@ public static void main(String[] args)  {
 //			Prod pit =(Prod) itr.next();
 //			System.out.println(pit.getName());
 //		}
-		t1.updateProd(p);
-		
+		//t1.updateProd(p);
+//		List<Ucart> ulist =t1.getUcart(10);
+		Ucart cart=new Ucart(10,2,3);
+//		Iterator itr =ulist.iterator();
+//		while(itr.hasNext())
+//		{
+//			cart =(Ucart) itr.next();
+//			System.out.println(cart.getProdid());
+		t1.deletefromCart(cart);
+//		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

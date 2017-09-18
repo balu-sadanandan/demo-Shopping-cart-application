@@ -1,0 +1,37 @@
+package cart;
+
+public class Ucart {
+	protected int uid;
+	protected int prodid;
+	protected int price;
+	public Ucart(int uid, int prodid, int price) {
+		super();
+		this.uid = uid;
+		this.prodid = prodid;
+		this.price = price;
+	}
+	public Ucart(int uid) {
+		super();
+		this.uid = uid;
+	}
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	public int getProdid() {
+		return prodid;
+	}
+	public void setProdid(int prodid) {
+		this.prodid = prodid;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+
+}

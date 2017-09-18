@@ -296,5 +296,15 @@ public class Controller extends HttpServlet {
 	     
 	        
 	}
+	 private void viewCart(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 List<Prod> pList = pdao.listAll();
+		 System.out.println("got sql data for products");
+	        request.setAttribute("pList",pList);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("prodcat.jsp");
+	        dispatcher.forward(request, response);
+	        return;
+	     
+	        
+	} 
 
 }

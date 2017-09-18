@@ -9,4 +9,6 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="cart.User"/>
 <fullyQualifiedTypeName name="cart.Prod"/>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="cart.Ucart"/>
 </qualifiedTypeNameHistroy>

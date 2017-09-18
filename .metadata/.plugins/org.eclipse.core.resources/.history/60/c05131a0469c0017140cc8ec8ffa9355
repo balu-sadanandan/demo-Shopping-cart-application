@@ -1,0 +1,88 @@
+package cart;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.*;
+
+public class Ucdao {
+	private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+    private Connection conn;
+    public Ucdao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+        this.jdbcURL =jdbcURL ;
+        this.jdbcUsername = jdbcUsername;
+        this.jdbcPassword = jdbcPassword;
+    }
+    protected void connect() throws SQLException {
+        if (conn == null ||conn.isClosed()) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            conn = DriverManager.getConnection(
+                                        jdbcURL, jdbcUsername, jdbcPassword);
+            if (conn != null) {
+		        System.out.println("Connected");
+		    }
+        }
+    }
+    protected void disconnect() throws SQLException {
+        if (conn != null && !conn.isClosed()) {
+            conn.close();
+        }
+    }
+    public boolean addtoCart(Ucart uc) throws SQLException{
+    	String sql = "INSERT INTO ucart (uid,prodid,qty)  VALUES (?, ?,?)";
+    	//INSERT into prodcat (prodid,name,price) VALUES ("02","monitor","10574");
+    	connect();
+		 
+		PreparedStatement statement = conn.prepareStatement(sql);
+		//statement.setString(1, Integer.toString(e.getEmp_id()));
+		statement.setString(1,Integer.toString(uc.getUid()));
+		statement.setString(2,Integer.toString(uc.getProdid()) );
+		statement.setString(4,Integer.toString(uc.getQty()));
+		 
+		int rowsInserted = statement.executeUpdate();
+				statement.close();
+		disconnect();
+		//conn.close();
+		if (rowsInserted > 0) {
+		    System.out.println("A new item was inserted successfully!");
+		    return true;
+		}
+		return false;
+    }
+    public List<Ucart> getUcart(int uid) throws SQLException{
+    	List<Ucart> ucList = new ArrayList<>();
+    	String sql="select * from ucart where uid ="+uid;
+    	connect();
+		 
+		Statement statement = conn.prepareStatement(sql);
+		//statement.setString(1,Integer.toString(uid));
+	     ResultSet resultSet = statement.executeQuery(sql);
+	     while (resultSet.next()) {
+	            int prodid = resultSet.getInt("prodid");
+	            int qty =resultSet.getInt("qty");                       
+	            Ucart uc=new Ucart(uid, prodid,qty);   
+	            ucList.add(uc);
+	            }
+	    
+	     
+	         
+	        resultSet.close();
+	        statement.close();
+	         
+	        disconnect();
+	       return ucList;
+    }
+
+
+
+
+}
