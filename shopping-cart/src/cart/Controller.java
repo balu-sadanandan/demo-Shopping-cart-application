@@ -94,7 +94,10 @@ public class Controller extends HttpServlet {
             	break;
 			case "/lcart":viewCart(request, response);
 				break;
-			
+			case "/acart":addtoCart(request, response);
+				break;
+			case"/rcart":rmCart(request, response);	
+				break;
 			default:listProducts(request, response);
 			}
 			
@@ -308,20 +311,54 @@ public class Controller extends HttpServlet {
 		 int uid=(int)session.getAttribute("uname");
 		 System.out.println(uid);
 		 List<Ucart> ucList = ucdao.getUcart(uid);
+		 int cartot=0;
 		 Iterator itr =ucList.iterator();
 			while(itr.hasNext())
 			{
 				Ucart uit =(Ucart) itr.next();
 				System.out.println(uit.getName());
+				cartot+=uit.getPrice();
 			}
 		 System.out.println("got sql data for products");
+		 System.out.println("Total price:"+cartot);
 	        request.setAttribute("ucList",ucList);
+	        request.setAttribute("price",cartot);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("my cart.jsp");
 	        dispatcher.forward(request, response);
 	        return;
 	     
 	        
 	} 
+	 private void addtoCart(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException, SQLException {
+		 System.out.println("adding to cart");
+		 int pid = Integer.parseInt(request.getParameter("id"));
+		 HttpSession session=request.getSession();
+		 int uid=(int)session.getAttribute("uname");
+		 System.out.println("üser:");
+		 System.out.println(uid);
+		 //Ucart uc= new Ucart(uid,pid);
+		 Ucart uc=new Ucart(uid,pid,1);
+		 ucdao.addtoCart(uc);
+		 viewCart(request, response);
+		// listProducts(request, response);
+	       
+	        return;
+	    } 
+	 private void rmCart(HttpServletRequest request, HttpServletResponse response)
+	            throws ServletException, IOException, SQLException {
+		 System.out.println("removing from cart");
+		 int pid = Integer.parseInt(request.getParameter("id"));
+		 HttpSession session=request.getSession();
+		 int uid=(int)session.getAttribute("uname");
+		 System.out.println("üser:");
+		 System.out.println(uid);
+		 Ucart uc=new Ucart(uid,pid);
+		 ucdao.deletefromCart(uc);
+		 viewCart(request, response);
+	       
+	        return;
+	    } 
 	 
 
 }

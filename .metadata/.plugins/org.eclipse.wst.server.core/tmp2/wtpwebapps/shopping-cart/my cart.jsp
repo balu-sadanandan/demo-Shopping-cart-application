@@ -42,6 +42,7 @@
                 </tr>
             </c:forEach>
         </table>
+        Total Price:<c:out value="${price}"/>
         
     </div>   
 </body>

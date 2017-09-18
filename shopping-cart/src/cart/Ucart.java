@@ -8,6 +8,11 @@ public class Ucart {
 	protected int price;
 	protected int qty;
 	
+	public Ucart(int uid, int prodid) {
+		super();
+		this.uid = uid;
+		this.prodid = prodid;
+	}
 	public Ucart(int tid, int uid, int prodid, String name, int price, int qty) {
 		super();
 		this.tid = tid;

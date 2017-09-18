@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 public class Ucdao {
 	private String jdbcURL;
     private String jdbcUsername;
@@ -40,6 +42,7 @@ public class Ucdao {
     public boolean addtoCart(Ucart uc) throws SQLException{
     	String sql = "INSERT INTO ucart (uid,prodid,qty)  VALUES (?, ?,?)";
     	//INSERT into prodcat (prodid,name,price) VALUES ("02","monitor","10574");
+    	System.out.println("Ädding to cart for user:"+uc.getUid());
     	List<Ucart> ulist =getUcart(uc.getUid());
 		Ucart cart;
 		Iterator itr =ulist.iterator();
@@ -49,7 +52,7 @@ public class Ucdao {
 		while(itr.hasNext())
 		{
 			cart =(Ucart) itr.next();
-			//System.out.println(cart.getProdid());
+			System.out.println(cart.getName());
 			if(cart.getProdid()==uc.getProdid()){
 				flag=1;
 				tid=cart.getTid();
@@ -97,17 +100,20 @@ public class Ucdao {
 		Statement statement = conn.prepareStatement(sql);
 		//statement.setString(1,Integer.toString(uid));
 	     ResultSet resultSet = statement.executeQuery(sql);
+	    
 	     while (resultSet.next()) {
 	            int prodid = resultSet.getInt("prodid");
 	            int qty =resultSet.getInt("qty");    
 	            int tid =resultSet.getInt("transactionid");
 	            String name=p.getItem(prodid).getName();
-	            int price=p.getItem(prodid).getPrice();
+	            int price=(p.getItem(prodid).getPrice())*qty;
 //	            Ucart uc=new Ucart(uid, prodid,qty);   
 //	            Ucart uc = new Ucart(tid, uid, prodid, qty);
 	            Ucart uc =new Ucart(tid, uid, prodid, name, price, qty);
 	            ucList.add(uc);
 	            }
+	 
+	     
 	    
 	     
 	         
