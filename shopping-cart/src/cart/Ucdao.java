@@ -89,6 +89,7 @@ public class Ucdao {
 		return false;
     }
     public List<Ucart> getUcart(int uid) throws SQLException{
+    	Pdao p = new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
     	List<Ucart> ucList = new ArrayList<>();
     	String sql="select * from ucart where uid ="+uid;
     	connect();
@@ -100,8 +101,11 @@ public class Ucdao {
 	            int prodid = resultSet.getInt("prodid");
 	            int qty =resultSet.getInt("qty");    
 	            int tid =resultSet.getInt("transactionid");
+	            String name=p.getItem(prodid).getName();
+	            int price=p.getItem(prodid).getPrice();
 //	            Ucart uc=new Ucart(uid, prodid,qty);   
-	            Ucart uc = new Ucart(tid, uid, prodid, qty);
+//	            Ucart uc = new Ucart(tid, uid, prodid, qty);
+	            Ucart uc =new Ucart(tid, uid, prodid, name, price, qty);
 	            ucList.add(uc);
 	            }
 	    

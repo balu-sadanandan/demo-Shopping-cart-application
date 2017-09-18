@@ -19,6 +19,7 @@ public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     protected Cartdao udao;  
     protected Pdao pdao;
+    protected Ucdao ucdao;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,6 +31,8 @@ public class Controller extends HttpServlet {
 		// TODO Auto-generated method stub
 		 udao= new Cartdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
 		 pdao= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+		 ucdao= new Ucdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+	
 		 
 		 System.out.println("init");
 		 
@@ -89,6 +92,9 @@ public class Controller extends HttpServlet {
               	RequestDispatcher dispatcher = request.getRequestDispatcher("login1.jsp");
     	        dispatcher.forward(request, response);
             	break;
+			case "/lcart":viewCart(request, response);
+				break;
+			
 			default:listProducts(request, response);
 			}
 			
@@ -190,6 +196,7 @@ public class Controller extends HttpServlet {
 								System.out.println("user validated");
 								HttpSession session= request.getSession();
 								session.setAttribute("login", "user");
+								session.setAttribute("uname",uit.getUid() );
 							}
 				}
 				HttpSession session= request.getSession();
@@ -297,14 +304,24 @@ public class Controller extends HttpServlet {
 	        
 	}
 	 private void viewCart(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
-		 List<Prod> pList = pdao.listAll();
+		 HttpSession session=request.getSession();
+		 int uid=(int)session.getAttribute("uname");
+		 System.out.println(uid);
+		 List<Ucart> ucList = ucdao.getUcart(uid);
+		 Iterator itr =ucList.iterator();
+			while(itr.hasNext())
+			{
+				Ucart uit =(Ucart) itr.next();
+				System.out.println(uit.getName());
+			}
 		 System.out.println("got sql data for products");
-	        request.setAttribute("pList",pList);
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("prodcat.jsp");
+	        request.setAttribute("ucList",ucList);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("my cart.jsp");
 	        dispatcher.forward(request, response);
 	        return;
 	     
 	        
 	} 
+	 
 
 }

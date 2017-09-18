@@ -29,13 +29,14 @@
                 <th>Price</th>
                 <th>Actions</th>
             </tr>
-            <c:forEach var="prod" items="${pList}">
+            <c:forEach var="uc" items="${ucList}">
                 <tr>
-                    <td><c:out value="${prod.prodid}" /></td>
-                    <td><a href="prod?id=<c:out value='${prod.prodid}' />"><c:out value="${prod.name}" /></a></td>
-                    <td><c:out value="${prod.price}" /></td>
+                    <td><c:out value="${uc.prodid}" /></td>
+                    <td><a href="prod?id=<c:out value='${uc.prodid}' />"><c:out value="${uc.name}" /></a></td>
+                    <td><c:out value="${uc.qty}" /></td>
+                    <td><c:out value="${uc.price}" /></td>
                     <td>
-                        <a href="acart?id=<c:out value='${prod.prodid}' />">Add to cart</a>
+                        <a href="rcart?id=<c:out value='${uc.prodid}' />">Remove from cart</a>
                            
                     </td>
                 </tr>

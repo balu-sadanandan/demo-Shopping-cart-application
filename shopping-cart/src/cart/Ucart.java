@@ -4,9 +4,19 @@ public class Ucart {
 	protected int tid;
 	protected int uid;
 	protected int prodid;
-	
+	protected String name;
+	protected int price;
 	protected int qty;
 	
+	public Ucart(int tid, int uid, int prodid, String name, int price, int qty) {
+		super();
+		this.tid = tid;
+		this.uid = uid;
+		this.prodid = prodid;
+		this.name = name;
+		this.price = price;
+		this.qty = qty;
+	}
 	public Ucart(int tid, int uid, int prodid, int qty) {
 		super();
 		this.tid = tid;
@@ -47,6 +57,18 @@ public class Ucart {
 	}
 	public void setTid(int tid) {
 		this.tid = tid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	
