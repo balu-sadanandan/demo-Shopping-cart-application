@@ -127,18 +127,34 @@ public class Controller extends HttpServlet {
 			case "/edit":
 				showEditForm(request, response);
 				break;
+			case "/vp":
+				listProductsadmin(request, response);
+				break;
 			case "/insert":
 				insertUser(request, response);
 				break;
 			case "/update":
 				updateUser(request, response);
 				break;
+			case "/updatep":
+				updateP(request, response);
+				break;
 			case "/delete":
 				deleteUser(request, response);
 				break;
-				
-				
-						
+			case "/editem":
+				editItem(request, response);
+				break;
+			case "/newp":
+				newItem(request, response);
+				break;
+				//updateP(request, response);
+			case "/insertp":	
+				insertP(request, response);
+				break;
+			case "/ditem":	
+				deleteP(request, response);
+				break;						
 			default:
 				listUsers(request, response);
 				
@@ -232,6 +248,7 @@ public class Controller extends HttpServlet {
 	     
 	        
 	}
+	
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -261,6 +278,7 @@ public class Controller extends HttpServlet {
 	        response.sendRedirect("list");
 	        return;
 	    }
+	 //for new user registration by user
 	 private void insertuUser(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
 		         
@@ -301,6 +319,16 @@ public class Controller extends HttpServlet {
 		 System.out.println("got sql data for products");
 	        request.setAttribute("pList",pList);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("prodcat.jsp");
+	        dispatcher.forward(request, response);
+	        return;
+	     
+	        
+	}
+	 private void listProductsadmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 List<Prod> pList = pdao.listAll();
+		 System.out.println("got sql data for products(admin)");
+	        request.setAttribute("pList",pList);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("prodAdmn.jsp");
 	        dispatcher.forward(request, response);
 	        return;
 	     
@@ -359,6 +387,59 @@ public class Controller extends HttpServlet {
 	       
 	        return;
 	    } 
+	 private void editItem(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, ServletException, IOException {
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        Prod p= pdao.getItem(id);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("eprod.jsp");
+	        request.setAttribute("prod", p);
+	        dispatcher.forward(request, response);
+	        return;
+	 
+	    }
+	 private void updateP(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, IOException, ServletException {
+		 
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        String name = request.getParameter("name");
+	        int price =Integer.parseInt(request.getParameter("price"));
+	        String desc = request.getParameter("desc");
+	       Prod p=new Prod(id, name, price, desc);
+	                
+	          if(  pdao.updateProd(p))
+	    	  System.out.println("update success");
+	      else
+	    	  System.out.println("some thing went wrong");
+	        response.sendRedirect("list");
+	        return;
+	    }
+	 private void newItem(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, ServletException, IOException {
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("eprod.jsp");
+	        dispatcher.forward(request, response);
+	        return;
+	 
+	    }
+	 private void insertP(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, IOException, ServletException {
+		 System.out.println("Writing new product details to sql database");
+		 int id = Integer.parseInt(request.getParameter("id"));
+	        String name = request.getParameter("name");
+	        int price =Integer.parseInt(request.getParameter("price"));
+	        String desc = request.getParameter("desc");
+	       Prod p=new Prod(id, name, price, desc);
+	        pdao.addItem(p);	            
+	        response.sendRedirect("list");
+	        return;
+	    }
+	 private void deleteP(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, IOException {
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        Prod p=new Prod(id);
+	        pdao.deleteItem(p);     
+	        response.sendRedirect("list");
+	        return;
+	 } 
 	 
 
 }

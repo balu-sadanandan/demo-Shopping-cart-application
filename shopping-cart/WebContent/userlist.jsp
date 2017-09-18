@@ -19,6 +19,8 @@
             <a href="new">Add New User</a>
             &nbsp;&nbsp;&nbsp;
             <a href="list">List All Users</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="vp">View products</a>
              
         </h2>
     </center>
