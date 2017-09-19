@@ -1,0 +1,54 @@
+package cart;
+import java.util.*;
+import java.sql.SQLException;
+import java.util.*;
+
+public class Dbtest {
+public static void main(String[] args)  {
+	Ucdao t1= new Ucdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+	try {
+		//Prod p= new Prod(1,"cpu",5000,"xxx");
+//		t1.addItem(p);
+//		Prod p= new Prod(1);
+//		t1.deleteItem(p);
+//		p=t1.getItem(5);
+//		System.out.println(p.desc);
+//		List<Prod> plist =t1.listAll();
+//		Iterator itr =plist.iterator();
+//		while(itr.hasNext())
+//		{
+//			Prod pit =(Prod) itr.next();
+//			System.out.println(pit.getName());
+//		}
+		//t1.updateProd(p);
+//		List<Ucart> ulist =t1.getUcart(10);
+		Ucart cart=new Ucart(10,2,3);
+//		Iterator itr =ulist.iterator();
+//		while(itr.hasNext())
+//		{
+//			cart =(Ucart) itr.next();
+//			System.out.println(cart.getProdid());
+//		t1.deletefromCart(cart);
+//		}
+		Random rand = new Random();
+
+		int  n = rand.nextInt(50) + 1;
+		for(i=101;i<200;i++)
+		{
+		int id = i;
+        String name = "Item"+(i-100)
+        int price = rand.nextInt(50000) + 100;
+        String desc = request.getParameter("desc");
+       Prod p=new Prod(id, name, price, desc);
+        pdao.addItem(p);	
+		}
+		
+		
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+}

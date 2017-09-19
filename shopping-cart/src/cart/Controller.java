@@ -98,6 +98,7 @@ public class Controller extends HttpServlet {
 				break;
 			case"/rcart":rmCart(request, response);	
 				break;
+			case "/prod":listProdD(request, response);	
 			default:listProducts(request, response);
 			}
 			
@@ -439,6 +440,15 @@ public class Controller extends HttpServlet {
 	        pdao.deleteItem(p);     
 	        response.sendRedirect("list");
 	        return;
+	 } 
+	 private void listProdD(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, IOException, ServletException {
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        Prod p=pdao.getItem(id);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("proddesc.jsp");
+	        request.setAttribute("product", p);
+	        dispatcher.forward(request, response);
+	        return;	       
 	 } 
 	 
 

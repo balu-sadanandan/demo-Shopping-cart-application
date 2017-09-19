@@ -7,7 +7,7 @@
 </head>
 <body>
     <center>
-        <h1>Shopping website</h1>
+        <h1>Awesome shopping website</h1>
     </center>
     <div align="right">
     <a href="logout">Logout</a>
