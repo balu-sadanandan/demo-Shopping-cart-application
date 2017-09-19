@@ -334,3 +334,6 @@
 127.0.0.1 - - [19/Sep/2017:15:21:43 +0530] "POST /shopping-cart/login HTTP/1.1" 200 36234
 127.0.0.1 - - [19/Sep/2017:15:21:53 +0530] "GET /shopping-cart/acart?id=106 HTTP/1.1" 200 1088
 127.0.0.1 - - [19/Sep/2017:15:21:56 +0530] "GET /shopping-cart/prodcat HTTP/1.1" 200 36234
+127.0.0.1 - - [19/Sep/2017:15:25:34 +0530] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [19/Sep/2017:15:25:36 +0530] "GET /shopping-cart/ HTTP/1.1" 200 1377
+127.0.0.1 - - [19/Sep/2017:15:25:42 +0530] "POST /shopping-cart/login HTTP/1.1" 200 36234
