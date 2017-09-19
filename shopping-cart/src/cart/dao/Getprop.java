@@ -3,37 +3,37 @@ import java.util.Properties;
 import java.io.*;
 
 public class Getprop {
-	static protected String jdbcURL;
-	static protected String jdbcUsername;
-	static protected String jdbcPassword;
-	static{
-		
-
-				Properties prop =new Properties();
-				InputStream input=null;
-				try{
-					input= new FileInputStream("config.properties");
-					prop.load(input);
-					System.out.println(prop.getProperty("jdbcURL"));
-					System.out.println(prop.getProperty("jdbcUsername"));
-					System.out.println(prop.getProperty("jdbcPassword"));
-					jdbcURL=prop.getProperty("jdbcURL");
-					jdbcUsername=prop.getProperty("jdbcUsername");
-					jdbcPassword=prop.getProperty("jdbcPassword");
-				}catch(IOException ex){
-					ex.printStackTrace();
-				}finally{
-					if(input!=null){
-						try{
-							input.close();
-						}catch(IOException e){
-							e.printStackTrace();
-						}
-					}
-				}
-			
-		
-	}
+	static protected String jdbcURL="jdbc:mysql://localhost:3306/shopcart";//"jdbc\:mysql\://localhost\:3306/shopcart";
+	static protected String jdbcUsername="root";
+	static protected String jdbcPassword="1234";
+//	static{
+//		
+//
+//				Properties prop =new Properties();
+//				InputStream input=null;
+//				try{
+//					input= new FileInputStream("config.properties");
+//					prop.load(input);
+//					System.out.println(prop.getProperty("jdbcURL"));
+//					System.out.println(prop.getProperty("jdbcUsername"));
+//					System.out.println(prop.getProperty("jdbcPassword"));
+//					jdbcURL=prop.getProperty("jdbcURL");
+//					jdbcUsername=prop.getProperty("jdbcUsername");
+//					jdbcPassword=prop.getProperty("jdbcPassword");
+//				}catch(IOException ex){
+//					ex.printStackTrace();
+//				}finally{
+//					if(input!=null){
+//						try{
+//							input.close();
+//						}catch(IOException e){
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//			
+//		
+//	}
 	public static String getJdbcUsername() {
 		return jdbcUsername;
 	}
