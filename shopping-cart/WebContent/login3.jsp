@@ -6,6 +6,9 @@
         <title>Login</title>
     </head>
     <body>
+     <center>
+        <h1>Awesome shopping website</h1>
+    </center>
     	 
         <form method="post" action="login">
             <center>

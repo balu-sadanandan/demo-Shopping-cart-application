@@ -98,6 +98,30 @@ public class Pdao {
          
         return p;
     }
+    public Prod getItem(String pname) throws SQLException {
+        Prod p = null;
+       String sql = "SELECT * FROM prodcat WHERE name = ?";
+        
+       connect();
+        
+       PreparedStatement statement = conn.prepareStatement(sql);
+       statement.setString(1, pname);
+        
+       ResultSet resultSet = statement.executeQuery();
+        
+       if (resultSet.next()) {
+           //String name = resultSet.getString("name");
+           int id=Integer.parseInt(resultSet.getString("prodid"));
+           int  price = Integer.parseInt(resultSet.getString("price"));
+           String desc = resultSet.getString("description");
+           p= new Prod(id,pname,price,desc);            
+                 }
+        
+       resultSet.close();
+       statement.close();
+        
+       return p;
+   }
     //outputs the product list with all details except the description 
     public List<Prod> listAll() throws SQLException {
         List<Prod> pList = new ArrayList<>();
@@ -137,6 +161,60 @@ public class Pdao {
         statement.close();
         disconnect();
         return rowUpdated;     
+    }
+    public boolean chkid(int pid) throws SQLException {
+        List<Prod> pList = new ArrayList<>();
+         
+        String sql = "SELECT * FROM prodcat";
+         
+        connect();
+         
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+         
+        while (resultSet.next()) {
+            int id = resultSet.getInt("prodid");
+            if(pid==id){ 
+            	 resultSet.close();
+                 statement.close();
+                 disconnect();
+            	return true;
+            
+            }
+            }
+         
+        resultSet.close();
+        statement.close();        
+        disconnect();
+        return false;
+      
+    }
+    public boolean chkname(String pname) throws SQLException {
+        List<Prod> pList = new ArrayList<>();
+         
+        String sql = "SELECT * FROM prodcat";
+         
+        connect();
+         
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+         
+        while (resultSet.next()) {
+        	 String name = resultSet.getString("name");
+            if(pname.equals(name)){ 
+            	 resultSet.close();
+                 statement.close();
+                 disconnect();
+            	return true;
+            
+            }
+            }
+         
+        resultSet.close();
+        statement.close();        
+        disconnect();
+        return false;
+      
     }
     
     

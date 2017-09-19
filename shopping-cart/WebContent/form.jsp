@@ -42,7 +42,7 @@
                 <td>
                     <input type="text" name="name" size="40"
                             value="<c:out value='${user.name}' />"
-                        />
+                        required/>
                 </td>
             </tr>
             <tr>
@@ -50,7 +50,7 @@
                 <td>
                     <input type="text" name="pwd" size="40"
                             value="<c:out value='${user.pwd}' />"
-                    />
+                    required/>
                 </td>
             </tr>
             <tr>
@@ -58,7 +58,7 @@
                 <td>
                     <input type="text" name="mid" size="50"
                             value="<c:out value='${user.mailid}' />"
-                    />
+                    required/>
                 </td>
             </tr>
             <tr>

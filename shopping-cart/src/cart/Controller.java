@@ -99,6 +99,11 @@ public class Controller extends HttpServlet {
 			case"/rcart":rmCart(request, response);	
 				break;
 			case "/prod":listProdD(request, response);	
+						break;
+			case "/searchp":System.out.println("calling find function");				
+				findprod(request, response);
+				break;
+			
 			default:listProducts(request, response);
 			}
 			
@@ -446,6 +451,72 @@ public class Controller extends HttpServlet {
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        Prod p=pdao.getItem(id);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("proddesc.jsp");
+	        request.setAttribute("product", p);
+	        dispatcher.forward(request, response);
+	        return;	       
+	 } 
+	 private void findprod(HttpServletRequest request, HttpServletResponse response)
+	            throws  IOException, ServletException, SQLException {
+		 System.out.println("finding product by search");
+		 String pname=request.getParameter("pname");
+		 System.out.println("namelength "+pname.length());
+		 System.out.println("id"+request.getParameter("pid"));
+		 Prod p=new Prod(0);
+		 
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("proddesc.jsp");
+		
+			if(pname.length()==0){
+				 System.out.println("searching by id");
+				 int id = Integer.parseInt(request.getParameter("pid"));
+				 if(!pdao.chkid(id)){
+					 System.out.println("ïd doesnot exist");
+					  dispatcher = request.getRequestDispatcher("prodcat.jsp");
+					  List<Prod> pList = pdao.listAll();
+						 System.out.println("got sql data for products");
+					        request.setAttribute("pList",pList);
+					 request.setAttribute("status", 1);
+			        dispatcher.forward(request, response);
+					 
+				 }
+				 
+				 try{
+					 p=pdao.getItem(id);
+				 } catch (Exception e) {
+						// TODO Auto-generated catch block
+					
+				        request.setAttribute("status", 1);
+				        dispatcher.forward(request, response);
+					
+					e.printStackTrace();
+				}
+//			     System.out.println("printing name"+p.getName());
+ 
+			 }
+			 else {
+				 if(!pdao.chkname(pname)){
+					 dispatcher = request.getRequestDispatcher("prodcat.jsp");
+					 List<Prod> pList = pdao.listAll();
+					 System.out.println("got sql data for products");
+				        request.setAttribute("pList",pList);
+					 request.setAttribute("status", 1);
+				        dispatcher.forward(request, response);
+
+				 }
+				 try{
+				 p=pdao.getItem(pname);
+				 
+			 }catch (Exception e) {
+					// TODO Auto-generated catch block
+				
+			        request.setAttribute("status", 1);
+			        dispatcher.forward(request, response);
+				
+				e.printStackTrace();
+			}
+				 
+			 }
+		
+
 	        request.setAttribute("product", p);
 	        dispatcher.forward(request, response);
 	        return;	       

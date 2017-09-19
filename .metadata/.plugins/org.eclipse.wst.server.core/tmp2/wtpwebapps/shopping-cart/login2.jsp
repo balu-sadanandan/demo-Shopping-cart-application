@@ -6,6 +6,9 @@
         <title>Login..!</title>
     </head>
     <body>
+     <center>
+        <h1>Awesome shopping website</h1>
+    </center>
     	 <tr><center>
                         <td colspan="2">Wrong data, please retry</td>
             </center>        </tr>
