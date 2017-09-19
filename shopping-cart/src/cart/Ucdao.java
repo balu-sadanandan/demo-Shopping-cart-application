@@ -10,15 +10,17 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
+import cart.dao.Getprop;
+
 public class Ucdao {
 	private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection conn;
-    public Ucdao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
-        this.jdbcURL =jdbcURL ;
-        this.jdbcUsername = jdbcUsername;
-        this.jdbcPassword = jdbcPassword;
+    public Ucdao() {
+        this.jdbcURL =Getprop.getJdbcURL();
+        this.jdbcUsername = Getprop.getJdbcUsername();
+        this.jdbcPassword = Getprop.getJdbcPassword();
     }
     protected void connect() throws SQLException {
         if (conn == null ||conn.isClosed()) {
@@ -92,7 +94,7 @@ public class Ucdao {
 		return false;
     }
     public List<Ucart> getUcart(int uid) throws SQLException{
-    	Pdao p = new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+    	Pdao p = new Pdao();
     	List<Ucart> ucList = new ArrayList<>();
     	String sql="select * from ucart where uid ="+uid;
     	connect();

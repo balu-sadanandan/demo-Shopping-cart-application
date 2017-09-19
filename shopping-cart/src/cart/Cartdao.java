@@ -1,15 +1,19 @@
 package cart;
 import java.sql.*;
 import java.util.*;
+
+import cart.dao.Getprop;
 public class Cartdao {
 	private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection conn;
-    public Cartdao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
-        this.jdbcURL =jdbcURL ;
-        this.jdbcUsername = jdbcUsername;
-        this.jdbcPassword = jdbcPassword;
+    public Cartdao() {
+    	
+    	
+        this.jdbcURL =Getprop.getJdbcURL();
+        this.jdbcUsername = Getprop.getJdbcUsername();
+        this.jdbcPassword = Getprop.getJdbcPassword();
     }
 
     protected void connect() throws SQLException {

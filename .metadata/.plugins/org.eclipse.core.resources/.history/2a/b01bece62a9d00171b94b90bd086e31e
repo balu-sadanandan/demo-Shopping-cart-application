@@ -1,0 +1,19 @@
+package cart.dao;
+import java.util.Properties;
+import java.io.*;
+
+public class Config {
+	public static void main(String[] args) {
+		Properties prop =new Properties();
+		OutputStream output = null;
+		try{
+			output= new FileOutputStream("config.properties");
+			prop.setProperty("jdbcURL", "jdbc:mysql://localhost:3306/shopcart")
+			 this.jdbcURL =jdbcURL ;
+	        this.jdbcUsername = jdbcUsername;
+	        this.jdbcPassword = jdbcPassword;
+		}
+		
+	}
+
+}

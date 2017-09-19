@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Config.java&apos; to &apos;shopping-cart/src/cart.dao&apos;&#x0D;&#x0A;- Original project: &apos;shopping-cart&apos;&#x0D;&#x0A;- Destination element: &apos;shopping-cart/src/cart.dao&apos;&#x0D;&#x0A;- Original element: &apos;cart.Config.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;cart.dao" element1="/src&lt;cart{Config.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1505818874700" units="1" version="1.0"/>
+</session>

@@ -1,12 +1,16 @@
 package cart;
 import java.util.*;
+
+import cart.dao.Getprop;
+
 import java.sql.SQLException;
 import java.util.*;
 
 public class Dbtest {
 public static void main(String[] args)  {
-Pdao t1= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
-	try {
+//Pdao t1= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
+	//try
+	{
 		//Prod p= new Prod(1,"cpu",5000,"xxx");
 //		t1.addItem(p);
 //		Prod p= new Prod(1);
@@ -22,7 +26,7 @@ Pdao t1= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
 //		}
 		//t1.updateProd(p);
 //		List<Ucart> ulist =t1.getUcart(10);
-		Ucart cart=new Ucart(10,2,3);
+	//	Ucart cart=new Ucart(10,2,3);
 //		Iterator itr =ulist.iterator();
 //		while(itr.hasNext())
 //		{
@@ -47,12 +51,14 @@ Pdao t1= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
 //		}
 //		
 //		
-//		
-		System.out.println(t1.getItem(0).getName());
+		
+		System.out.println(Getprop.getJdbcUsername());
+		
+		//System.out.println(t1.getItem(0).getName());
 	}	
-	 catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+//	 catch (SQLException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 }
 }

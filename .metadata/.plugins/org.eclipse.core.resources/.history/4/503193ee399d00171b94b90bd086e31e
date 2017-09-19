@@ -1,0 +1,29 @@
+package cart.dao;
+import java.util.Properties;
+import java.io.*;
+
+public class Getprop {
+	
+	public static void main(String[] args) {
+		Properties prop =new Properties();
+		InputStream input=null;
+		try{
+			input= new FileInputStream("config.properties");
+			prop.load(input);
+			System.out.println(prop.getProperty("jdbcURL"));
+			System.out.println(prop.getProperty("jdbcUsername"));
+			System.out.println(prop.getProperty("jdbcPassword"));
+		}catch(IOException ex){
+			ex.printStackTrace();
+		}finally{
+			if(input!=null){
+				try{
+					input.close();
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+

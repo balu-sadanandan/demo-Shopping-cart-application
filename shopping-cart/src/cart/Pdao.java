@@ -9,15 +9,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import cart.dao.Getprop;
+
 public class Pdao {
 	private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection conn;
-    public Pdao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
-        this.jdbcURL =jdbcURL ;
-        this.jdbcUsername = jdbcUsername;
-        this.jdbcPassword = jdbcPassword;
+    public Pdao() {
+        this.jdbcURL =Getprop.getJdbcURL() ;
+        this.jdbcUsername = Getprop.getJdbcUsername();
+        this.jdbcPassword = Getprop.getJdbcPassword();
     }
 
     protected void connect() throws SQLException {
