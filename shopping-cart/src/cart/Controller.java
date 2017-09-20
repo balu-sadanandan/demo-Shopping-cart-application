@@ -9,6 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import cart.bean.Prod;
+import cart.bean.Ucart;
+import cart.bean.User;
+import cart.dao.Cartdao;
+import cart.dao.Pdao;
+import cart.dao.Ucdao;
+
 import java.sql.*;
 import java.util.*;
 /**
@@ -27,15 +35,8 @@ public class Controller extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		 udao= new Cartdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
-		 pdao= new Pdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
-		 ucdao= new Ucdao("jdbc:mysql://localhost:3306/shopcart","root","1234");
-	
-		 
-		 System.out.println("init");
-		 
+    public void init(ServletConfig config) throws ServletException {		 
+		 System.out.println("init");		 
 	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -99,6 +100,11 @@ public class Controller extends HttpServlet {
 			case"/rcart":rmCart(request, response);	
 				break;
 			case "/prod":listProdD(request, response);	
+						break;
+			case "/searchp":System.out.println("calling find function");				
+				findprod(request, response);
+				break;
+			
 			default:listProducts(request, response);
 			}
 			
@@ -192,7 +198,7 @@ public class Controller extends HttpServlet {
 		doGet(request, response);
 	}
 	private void validate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-	{
+	{ udao= new Cartdao();
 		System.out.println(request.getParameter("uname"));
 		String uname=request.getParameter("uname");
 		String pwd=request.getParameter("pass");
@@ -240,6 +246,7 @@ public class Controller extends HttpServlet {
 			
 	}
 	private void listUsers(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 udao= new Cartdao();
 		 List<User> uList = udao.listAll();
 		 System.out.println("got sql data");
 	        request.setAttribute("userlist",uList);
@@ -252,6 +259,7 @@ public class Controller extends HttpServlet {
 	
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
+		 udao= new Cartdao();
         int id = Integer.parseInt(request.getParameter("id"));
         User u= udao.getUser(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("form.jsp");
@@ -282,7 +290,7 @@ public class Controller extends HttpServlet {
 	 //for new user registration by user
 	 private void insertuUser(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
-		         
+		 udao= new Cartdao();
 	        String name = request.getParameter("name");
 	        String pwd = request.getParameter("pwd");
 	        String mid = request.getParameter("mid");
@@ -294,6 +302,7 @@ public class Controller extends HttpServlet {
 	
 	 private void updateUser(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
+		 udao= new Cartdao();
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        String name = request.getParameter("name");
 	        String pwd = request.getParameter("pwd");
@@ -309,6 +318,7 @@ public class Controller extends HttpServlet {
 	    }
 	 private void deleteUser(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException {
+		 udao= new Cartdao();
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        User u=new User(id);
 	        udao.deleteUser(u);	       
@@ -316,6 +326,7 @@ public class Controller extends HttpServlet {
 	        return;
 	 } 
 	 private void listProducts(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 pdao= new Pdao();
 		 List<Prod> pList = pdao.listAll();
 		 System.out.println("got sql data for products");
 	        request.setAttribute("pList",pList);
@@ -326,6 +337,7 @@ public class Controller extends HttpServlet {
 	        
 	}
 	 private void listProductsadmin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 pdao= new Pdao();
 		 List<Prod> pList = pdao.listAll();
 		 System.out.println("got sql data for products(admin)");
 	        request.setAttribute("pList",pList);
@@ -336,6 +348,7 @@ public class Controller extends HttpServlet {
 	        
 	}
 	 private void viewCart(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		 ucdao= new Ucdao();
 		 HttpSession session=request.getSession();
 		 int uid=(int)session.getAttribute("uname");
 		 System.out.println(uid);
@@ -360,6 +373,7 @@ public class Controller extends HttpServlet {
 	} 
 	 private void addtoCart(HttpServletRequest request, HttpServletResponse response)
 	            throws ServletException, IOException, SQLException {
+		 ucdao= new Ucdao();
 		 System.out.println("adding to cart");
 		 int pid = Integer.parseInt(request.getParameter("id"));
 		 HttpSession session=request.getSession();
@@ -390,6 +404,7 @@ public class Controller extends HttpServlet {
 	    } 
 	 private void editItem(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, ServletException, IOException {
+		 
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        Prod p= pdao.getItem(id);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("eprod.jsp");
@@ -400,7 +415,7 @@ public class Controller extends HttpServlet {
 	    }
 	 private void updateP(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
-		 
+		 pdao= new Pdao();
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        String name = request.getParameter("name");
 	        int price =Integer.parseInt(request.getParameter("price"));
@@ -423,6 +438,7 @@ public class Controller extends HttpServlet {
 	    }
 	 private void insertP(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
+		 pdao= new Pdao();
 		 System.out.println("Writing new product details to sql database");
 		 int id = Integer.parseInt(request.getParameter("id"));
 	        String name = request.getParameter("name");
@@ -435,6 +451,7 @@ public class Controller extends HttpServlet {
 	    }
 	 private void deleteP(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException {
+		 pdao= new Pdao();
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        Prod p=new Prod(id);
 	        pdao.deleteItem(p);     
@@ -443,9 +460,77 @@ public class Controller extends HttpServlet {
 	 } 
 	 private void listProdD(HttpServletRequest request, HttpServletResponse response)
 	            throws SQLException, IOException, ServletException {
+		 pdao= new Pdao();
 	        int id = Integer.parseInt(request.getParameter("id"));
 	        Prod p=pdao.getItem(id);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("proddesc.jsp");
+	        request.setAttribute("product", p);
+	        dispatcher.forward(request, response);
+	        return;	       
+	 } 
+	 private void findprod(HttpServletRequest request, HttpServletResponse response)
+	            throws  IOException, ServletException, SQLException {
+		 pdao= new Pdao();
+		 System.out.println("finding product by search");
+		 String pname=request.getParameter("pname");
+		 System.out.println("namelength "+pname.length());
+		 System.out.println("id"+request.getParameter("pid"));
+		 Prod p=new Prod(0);
+		 
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("proddesc.jsp");
+		
+			if(pname.length()==0){
+				 System.out.println("searching by id");
+				 int id = Integer.parseInt(request.getParameter("pid"));
+				 if(!pdao.chkid(id)){
+					 System.out.println("ïd doesnot exist");
+					  dispatcher = request.getRequestDispatcher("prodcat.jsp");
+					  List<Prod> pList = pdao.listAll();
+						 System.out.println("got sql data for products");
+					        request.setAttribute("pList",pList);
+					 request.setAttribute("status", 1);
+			        dispatcher.forward(request, response);
+					 
+				 }
+				 
+				 try{
+					 p=pdao.getItem(id);
+				 } catch (Exception e) {
+						// TODO Auto-generated catch block
+					
+				        request.setAttribute("status", 1);
+				        dispatcher.forward(request, response);
+					
+					e.printStackTrace();
+				}
+//			     System.out.println("printing name"+p.getName());
+ 
+			 }
+			 else {
+				 if(!pdao.chkname(pname)){
+					 dispatcher = request.getRequestDispatcher("prodcat.jsp");
+					 List<Prod> pList = pdao.listAll();
+					 System.out.println("got sql data for products");
+				        request.setAttribute("pList",pList);
+					 request.setAttribute("status", 1);
+				        dispatcher.forward(request, response);
+
+				 }
+				 try{
+				 p=pdao.getItem(pname);
+				 
+			 }catch (Exception e) {
+					// TODO Auto-generated catch block
+				
+			        request.setAttribute("status", 1);
+			        dispatcher.forward(request, response);
+				
+				e.printStackTrace();
+			}
+				 
+			 }
+		
+
 	        request.setAttribute("product", p);
 	        dispatcher.forward(request, response);
 	        return;	       
