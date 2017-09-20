@@ -1,0 +1,58 @@
+package cart.dao;
+import java.util.Properties;
+import java.io.*;
+
+public class Getpropf {
+	static protected String jdbcURL;
+	static protected String jdbcUsername;
+	static protected String jdbcPassword;
+//	static{
+//		
+//
+//				Properties prop =new Properties();
+//				InputStream input=null;
+//				try{
+//					input= new FileInputStream("config.properties");
+//					prop.load(input);
+//					System.out.println(prop.getProperty("jdbcURL"));
+//					System.out.println(prop.getProperty("jdbcUsername"));
+//					System.out.println(prop.getProperty("jdbcPassword"));
+//					jdbcURL=prop.getProperty("jdbcURL");
+//					jdbcUsername=prop.getProperty("jdbcUsername");
+//					jdbcPassword=prop.getProperty("jdbcPassword");
+//				}catch(IOException ex){
+//					ex.printStackTrace();
+//				}finally{
+//					if(input!=null){
+//						try{
+//							input.close();
+//						}catch(IOException e){
+//							e.printStackTrace();
+//						}
+//					}
+//				}
+//			
+//		
+//	}
+	public static String getJdbcUsername() {
+		return jdbcUsername;
+	}
+	public static void setJdbcUsername(String jdbcUsername) {
+		Getprop.jdbcUsername = jdbcUsername;
+	}
+	public static String getJdbcURL() {
+		return jdbcURL;
+	}
+	public static void setJdbcURL(String jdbcURL) {
+		Getprop.jdbcURL = jdbcURL;
+	}
+	public static String getJdbcPassword() {
+		return jdbcPassword;
+	}
+	public static void setJdbcPassword(String jdbcPassword) {
+		Getprop.jdbcPassword = jdbcPassword;
+	}
+	
+	
+}
+

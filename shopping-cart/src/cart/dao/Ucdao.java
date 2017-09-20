@@ -18,9 +18,9 @@ public class Ucdao {
     private String jdbcPassword;
     private Connection conn;
     public Ucdao() {
-        this.jdbcURL =Getprop.getJdbcURL();
-        this.jdbcUsername = Getprop.getJdbcUsername();
-        this.jdbcPassword = Getprop.getJdbcPassword();
+        this.jdbcURL =Getpropf.getJdbcURL();
+        this.jdbcUsername = Getpropf.getJdbcUsername();
+        this.jdbcPassword = Getpropf.getJdbcPassword();
     }
     protected void connect() throws SQLException {
         if (conn == null ||conn.isClosed()) {

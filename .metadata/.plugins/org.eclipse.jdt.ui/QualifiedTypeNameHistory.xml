@@ -15,4 +15,5 @@
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="cart.dao.Getprop"/>
+<fullyQualifiedTypeName name="cart.dao.Getpropf"/>
 </qualifiedTypeNameHistroy>

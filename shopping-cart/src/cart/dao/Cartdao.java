@@ -4,25 +4,30 @@ import java.util.*;
 
 import cart.bean.User;
 public class Cartdao {
-	private String jdbcURL;
-    private String jdbcUsername;
-    private String jdbcPassword;
+	private static String jdbcURL;
+    private static String jdbcUsername;
+    private static String jdbcPassword;
     private Connection conn;
     public Cartdao() {
     	
     	
-        this.jdbcURL =Getprop.getJdbcURL();
-        this.jdbcUsername = Getprop.getJdbcUsername();
-        this.jdbcPassword = Getprop.getJdbcPassword();
+       
     }
+ 
 
     protected void connect() throws SQLException {
+    	System.out.println("going to fetch url");
+       	jdbcURL =Getpropf.getJdbcURL();
+        jdbcUsername = Getpropf.getJdbcUsername();
+        jdbcPassword = Getpropf.getJdbcPassword();
+    	
         if (conn == null ||conn.isClosed()) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 throw new SQLException(e);
             }
+            System.out.println("Jdbc url"+jdbcURL);
             conn = DriverManager.getConnection(
                                         jdbcURL, jdbcUsername, jdbcPassword);
             if (conn != null) {
