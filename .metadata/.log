@@ -3928,6 +3928,7 @@ java.net.SocketException: Connection reset
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-09-19 20:13:24.910
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+<<<<<<< HEAD
 !SESSION 2017-09-20 10:32:37.108 -----------------------------------------------
 eclipse.buildId=4.7.0.I20160915-0230
 java.version=1.8.0_121
@@ -4249,3 +4250,5 @@ Caused by: java.net.SocketException: Connection reset
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2017-09-20 11:43:42.032
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+=======
+>>>>>>> a941e75301946a0cc78c025c436e07ebae53429c

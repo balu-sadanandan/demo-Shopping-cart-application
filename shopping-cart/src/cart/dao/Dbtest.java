@@ -49,8 +49,12 @@ public static void main(String[] args)  {
 //		
 //		
 		
+<<<<<<< HEAD
 		System.out.println(Getpropf.getJdbcUsername());
 		System.out.println(Getpropf.getJdbcURL());
+=======
+		System.out.println(Getprop.getJdbcUsername());
+>>>>>>> a941e75301946a0cc78c025c436e07ebae53429c
 		
 		//System.out.println(t1.getItem(0).getName());
 	}	

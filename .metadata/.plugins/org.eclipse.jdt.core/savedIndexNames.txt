@@ -2,7 +2,6 @@ INDEX VERSION 1.129+E:\java testcode\demo-Shopping-cart-application\.metadata\.p
 293692079.index
 1449841208.index
 1812496562.index
-2376399651.index
 495217312.index
 1236689251.index
 2875341295.index
@@ -14,8 +13,8 @@ INDEX VERSION 1.129+E:\java testcode\demo-Shopping-cart-application\.metadata\.p
 900480025.index
 1015721371.index
 579404460.index
-1200339477.index
 3654661913.index
+1200339477.index
 3260877587.index
 1090200666.index
 3064462347.index
@@ -25,9 +24,15 @@ INDEX VERSION 1.129+E:\java testcode\demo-Shopping-cart-application\.metadata\.p
 1494953510.index
 3778645487.index
 4013218907.index
+<<<<<<< HEAD
 1075874757.index
 71018339.index
 1334412443.index
+=======
+1334412443.index
+71018339.index
+1075874757.index
+>>>>>>> a941e75301946a0cc78c025c436e07ebae53429c
 3623672748.index
 1921635116.index
 2899740869.index

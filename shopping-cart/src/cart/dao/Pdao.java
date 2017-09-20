@@ -17,9 +17,15 @@ public class Pdao {
     private String jdbcPassword;
     private Connection conn;
     public Pdao() {
+<<<<<<< HEAD
         this.jdbcURL =Getpropf.getJdbcURL() ;
         this.jdbcUsername = Getpropf.getJdbcUsername();
         this.jdbcPassword = Getpropf.getJdbcPassword();
+=======
+        this.jdbcURL =Getprop.getJdbcURL() ;
+        this.jdbcUsername = Getprop.getJdbcUsername();
+        this.jdbcPassword = Getprop.getJdbcPassword();
+>>>>>>> a941e75301946a0cc78c025c436e07ebae53429c
     }
 
     protected void connect() throws SQLException {
